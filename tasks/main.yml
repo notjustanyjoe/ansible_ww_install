@@ -8,7 +8,6 @@
 - name: Ensure Hostname is set on machine
   ansible.builtin.hostname:
     name: '{{ ww_servername }}'
-  when: pbs_server 
 
 - name: Install the 'Development tools' package group
   ansible.builtin.dnf:
