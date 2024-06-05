@@ -1,0 +1,11 @@
+---
+# vars file for ansible_ww4_install
+ww_req_pkgs:
+  - golang
+  - libassuan-devel
+  - gpgme-devel
+  - unzip
+  - tftp-server
+  - dhcp-server
+  - nfs-utils
+  - ipxe-bootimgs-x86

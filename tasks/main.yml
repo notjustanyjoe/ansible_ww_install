@@ -1,0 +1,62 @@
+---
+# tasks file for ansible_ww4_install
+
+- name: Load Distribution specific vars
+  ansible.builtin.include_vars:
+    file: 'vars/{{ansible_distribution}}.yml'
+
+- name: Ensure Hostname is set on machine
+  ansible.builtin.hostname:
+    name: '{{ ww_servername }}'
+  when: pbs_server 
+
+- name: Install the 'Development tools' package group
+  ansible.builtin.dnf:
+    name: '@Development tools'
+    state: present
+
+- name: Enable CRB or Powertools 
+  community.general.dnf_config_manager:
+    name: '{{ extra_repo }}'
+    state: enabled
+
+- name: Ensure EPEL Release is installed
+  ansible.builtin.dnf: 
+    name: '{{ epel_package }}'
+    state: present 
+
+- name: Ensure WareWulf Required Packages are present 
+  ansible.builtin.dnf:
+    name: '{{ ww_req_pkgs }}'
+    state: present 
+
+- name: Create Install Script from Template
+  ansible.builtin.template:
+    src: w_install.j2
+    dest: /usr/local/src/ww_install.sh
+    mode: '0750'
+  register: ww_script
+
+- name: Run Install script for WareWulf (This can take some time....)
+  ansible.builtin.command: 
+    cmd: /usr/local/src/ww_install.sh
+  when: ww_script is changed
+
+- name: Create WareWulf Conf file from Template
+  ansible.builtin.template:
+    src: ww_conf.j2
+    dest: /etc/warewulf/warewulf.conf
+
+- name: Create WareWulf Init Script from Template
+  ansible.builtin.template:
+    src: ww_init.j2
+    dest: /usr/local/src/ww_init.sh
+    mode: '0750'
+  register: ww_init
+
+- name: Run Ini script for WareWulf
+  ansible.builtin.command: 
+    cmd: /usr/local/src/ww_init.sh
+  when: ww_init
+
+
