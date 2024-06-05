@@ -31,7 +31,7 @@
 
 - name: Create Install Script from Template
   ansible.builtin.template:
-    src: w_install.j2
+    src: ww_install.j2
     dest: /usr/local/src/ww_install.sh
     mode: '0750'
   register: ww_script
