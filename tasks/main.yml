@@ -53,7 +53,7 @@
     mode: '0750'
   register: ww_init
 
-- name: Run Ini script for WareWulf
+- name: Run Init script for WareWulf
   ansible.builtin.command: 
     cmd: /usr/local/src/ww_init.sh
   when: ww_init
