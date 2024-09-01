@@ -3,7 +3,6 @@ sed -i 's@ExecStart=/usr/bin/wwctl server start@ExecStart=/usr/bin/wwctl server 
 sed -i 's@/var/run/warewulfd.pid@/run/warewulfd.pid@' /usr/lib/systemd/system/warewulfd.service
 systemctl daemon-reload
 systemctl enable --now warewulfd
-dnf remove *unbound* -y
 wwctl configure --all
 wwctl container import docker://{{ ww_container_image }} {{ ww_container_name }}
 wwctl container build {{ ww_container_name }}
@@ -12,4 +11,5 @@ wwctl profile set --yes --netdev eth1 --netmask 255.255.255.0 --gateway 192.168.
 
 wwctl node add r1n101 -I 192.168.200.101 --discoverable
 wwctl node add r1n102 -I 192.168.200.102 --discoverable
+wwctl container syncuser --write rocky-8 --build
 wwctl overlay build
