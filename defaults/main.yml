@@ -1,4 +1,4 @@
 ---
 # defaults file for ansible_ww4_install
-WW_VERSION: 4.5.2
+ww_version: 4.5.2
 ww_servername: spirit

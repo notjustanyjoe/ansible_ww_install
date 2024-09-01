@@ -1,9 +1,8 @@
 #!/bin/bash
-WW_VERSION={{ WW_VERSION }}
 
 git clone https://github.com/warewulf/warewulf.git
 cd warewulf 
-git checkout v{{ WW_VERSION }}
+git checkout v{{ ww_version }}
 make clean defaults \
     PREFIX=/usr \
     BINDIR=/usr/bin \
