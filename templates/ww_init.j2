@@ -6,7 +6,7 @@ systemctl enable --now warewulfd
 dnf remove *unbound* -y
 wwctl configure --all
 wwctl container import docker://registry.gitlab.com/notjustanyjoe/warewulf-ubi:latest rocky-8
-wwctl container syncuser --write rocky-8 --build
+wwctl container build rocky-8
 wwctl profile set --yes --container rocky-8 "default"
 wwctl profile set --yes --netdev eth1 --netmask 255.255.255.0 --gateway 192.168.200.254 "default"
 
