@@ -1,4 +1,6 @@
 ---
 # defaults file for ansible_ww4_install
-ww_version: 4.5.2
+ww_version: 4.5.6
 ww_servername: spirit
+ww_container_name: rocky-8
+ww_container_image: registry.gitlab.com/notjustanyjoe/warewulf-ubi:latest
