@@ -23,6 +23,7 @@
   ansible.builtin.dnf: 
     name: '{{ epel_package }}'
     state: present 
+  when: ww_epel_install
 
 - name: Ensure WareWulf Required Packages are present 
   ansible.builtin.dnf:

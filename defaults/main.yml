@@ -4,3 +4,4 @@ ww_version: 4.5.6
 ww_servername: spirit
 ww_container_name: rocky-8
 ww_container_image: registry.gitlab.com/notjustanyjoe/warewulf-ubi:latest
+ww_epel_install: true
