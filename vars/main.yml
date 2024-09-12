@@ -9,3 +9,9 @@ ww_req_pkgs:
   - dhcp-server
   - nfs-utils
   - ipxe-bootimgs-x86
+  - ipxe-bootimgs-aarch64
+ww_firewalld_svcs:
+  - warewulf
+  - dhcp
+  - nfs
+  - tftp
