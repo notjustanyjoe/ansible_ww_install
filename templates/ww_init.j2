@@ -1,7 +1,7 @@
 #!/bin/bash
-sed -i 's@ExecStart=/usr/bin/wwctl server start@ExecStart=/usr/bin/wwctl server start -d -v@' /usr/lib/systemd/system/warewulfd.service
-sed -i 's@/var/run/warewulfd.pid@/run/warewulfd.pid@' /usr/lib/systemd/system/warewulfd.service
-systemctl daemon-reload
+#sed -i 's@ExecStart=/usr/bin/wwctl server start@ExecStart=/usr/bin/wwctl server start -d -v@' /usr/lib/systemd/system/warewulfd.service
+#sed -i 's@/var/run/warewulfd.pid@/run/warewulfd.pid@' /usr/lib/systemd/system/warewulfd.service
+#systemctl daemon-reload
 systemctl enable --now warewulfd
 wwctl configure --all
 wwctl container import docker://{{ ww_container_image }} {{ ww_container_name }}
